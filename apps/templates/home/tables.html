@@ -1,0 +1,67 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Tables {% endblock %}
+
+{% block content %}
+  <div class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title"> Customer Table</h4>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table tablesorter" id="customer-table">
+                <thead class="text-primary">
+                  <tr>
+                    <th>Name</th>
+                    <th>Account Name</th>
+                    <th>Email Address</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% if customers %}
+                    {% for customer in customers %}
+                      <tr data-customer-id="{{ customer[0] }}">
+                        <td>{{ customer[0] }}</td>
+                        <td>{{ customer[1] }}</td>
+                        <td>{{ customer[2] }}</td>
+                        <td>
+                          <a href="{{ url_for('home_blueprint.customer_details', customer_id=customer[0]) }}" class="btn btn-primary">Check Out</a>
+                        </td>
+                      </tr>
+                    {% endfor %}
+                  {% else %}
+                    <tr>
+                      <td colspan="4">No data available</td>
+                    </tr>
+                  {% endif %}
+                </tbody>
+              </table>
+              <pre>{{ customers }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      // Attach click event listeners to each row in the customer table
+      const rows = document.querySelectorAll('#customer-table tbody tr');
+      rows.forEach(row => {
+        row.addEventListener('click', (event) => {
+          // Get the customer ID from the row
+          const customerId = row.getAttribute('data-customer-id');
+          
+          // Update the sidebar link with the customer ID
+          const customerLink = document.getElementById('customer-info-link').querySelector('a');
+          customerLink.href = '/customer/' + customerId;
+        });
+      });
+    });
+  </script>
+{% endblock content %}

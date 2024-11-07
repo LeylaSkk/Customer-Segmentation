@@ -1,0 +1,55 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Product Table {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+  <!-- Include any CSS files needed for styling -->
+{% endblock stylesheets %}
+
+{% block content %}
+  <div class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title"> Product Table</h4>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table tablesorter">
+                <thead class="text-primary">
+                  <tr>
+                    <th>Product Name</th>
+                    <th>Price per Unit</th>
+                    <th>Quantity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% if products %}
+                    {% for product in products %}
+                      <tr>
+                        <td>{{ product[0] }}</td>
+                        <td>{{ product[1] }}</td>
+                        <td>{{ product[2] }}</td>
+                      </tr>
+                    {% endfor %}
+                  {% else %}
+                    <tr>
+                      <td colspan="3">No products available</td>
+                    </tr>
+                  {% endif %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+  <!-- Include any JS files needed for functionality -->
+{% endblock javascripts %}

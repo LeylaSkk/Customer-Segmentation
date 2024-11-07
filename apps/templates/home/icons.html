@@ -1,0 +1,62 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %}
+
+{% block stylesheets %}
+<style>
+    .full-height {
+        height: calc(100vh - 60px); /* Adjust height if you have a header/footer with a specific height */
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+    }
+    .iframe-container {
+        display: flex;
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+        width: 100%;
+        height: 100%;
+        background-color: #414C57; /* Ensure the background color matches the card */
+    }
+    .iframe-container iframe {
+        border: none; /* Remove iframe border */
+        width: 100%;
+        height: 100%;
+    }
+    .card-chart {
+        background-color: #414C57; /* Set card background color */
+        border: none; /* Remove card border */
+        border-radius: 0.2857rem; /* Maintain existing border-radius */
+    }
+    .card-body {
+        padding: 0; /* Remove padding to ensure full coverage */
+        margin: 0; /* Remove margin to ensure full coverage */
+    }
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="content full-height">
+    <div class="row full-height">
+        <div class="col-12 full-height">
+            <div class="card card-chart full-height">
+                <div class="card-body full-height">
+                    <div class="iframe-container">
+                        <!-- Embed Power BI Dashboard -->
+                        <iframe title="last" src="https://app.powerbi.com/view?r=eyJrIjoiNzI0ODUwNjUtNzhiYS00MjUyLWEwOTAtMmE0NDg2NjU0ZWJjIiwidCI6ImU0YmQ2OWZmLWU2ZjctNGMyZS1iMjQ3LTQxYjU0YmEyNDkwZSIsImMiOjh9" frameborder="0" allowFullScreen="true"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block javascripts %}
+<script>
+    $(document).ready(function () {
+        // Initialize any additional JS or charts here if needed
+        demo.initDashboardPageCharts();
+    });
+</script>
+{% endblock javascripts %}
